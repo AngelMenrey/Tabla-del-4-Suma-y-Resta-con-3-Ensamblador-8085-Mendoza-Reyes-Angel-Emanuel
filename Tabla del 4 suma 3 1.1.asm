@@ -1,0 +1,40 @@
+.ORG 0100H
+
+MVI A,0H
+MVI B,4H 
+MVI C,AH
+MVI D,00H
+MVI E,00H
+
+LOOP:
+	INR A
+	DCR B
+	JNZ LOOP
+	MVI B,4H
+	STAX D
+	INR E
+	DCR C
+	JNZ LOOP
+      DCR E
+      MVI C,AH
+
+LOOP1:
+	
+	MVI B,3H
+	LDAX D
+	ADD B
+	MVI B,AH
+
+	SUM:
+      INR E
+      DCR B
+      JNZ SUM
+	MVI B,BH
+	STAX D
+	SUBS:
+	DCR E
+	DCR B
+	JNZ SUBS
+	DCR C
+	JNZ LOOP1
+HLT
